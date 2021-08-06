@@ -8,7 +8,7 @@ const rotas = require("./routes/rotas");
 servidor.use(bp.json());
 servidor.use(bp.urlencoded());
 
-rotas(servidor);
+rotas(servidor); // aqui que passa a instancia do servidor que usa na função do arquivo rotas
 
 servidor.use(express.static(path.join(__dirname, "public"))); // apontar pasta publica para rodar os assets ("estoque")
 

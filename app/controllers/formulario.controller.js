@@ -3,7 +3,7 @@ const getFormulario = (req, res, next) => {
   
     const filtrados = recebiDoBancoDeDados.filter((item) => item.includes("a"));
   
-    res.render("formulario", {
+    res.render("formulario", {   //passando a view pra onde vai, depois da virgula é possivel passar outras coisas, como ex. esse título
       title: "Liniker é o Professor",
       alunos: recebiDoBancoDeDados,
     });
