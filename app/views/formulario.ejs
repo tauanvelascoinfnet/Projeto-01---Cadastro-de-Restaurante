@@ -9,11 +9,23 @@
     <title>Document</title>
 </head>
 <body>
-    <h2> Nosso primeiro HTML </h2>
+    <h1>Formulário</h1>
 
-    <%= title %>
-    </br>
-    <%= alunos %>
+    <h2> <%= title %> </h2>
+   
+    <ul>
+        <% opcoesStatus.map(item => { %>
+            <li><%= item.label %> </li>    
+        <% }) %>
+        
+    </ul>
+
+    <ul>
+        <% opcoesTiposDeRestaurante.map(item => { %>
+            <li><%= item.label %> </li>    
+        <% }) %>
+        
+    </ul>
 
 </body>
 </html>
