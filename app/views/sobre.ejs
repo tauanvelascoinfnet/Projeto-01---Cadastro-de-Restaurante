@@ -1,1 +1,21 @@
-<h1>Chegou no Sobre!</h1>
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include('../components/head.ejs', { title: 'Pagina Sobre' }); %>
+
+    <body>
+        <%- include('../components/header.ejs'); %>
+            <div class="content">
+                <div class="about">
+                    <h1>Sobre Esta Aplicação</h1>
+                    <div class="info">
+                        <br>
+                        <p>
+                            Desenvolvida por Tauan Velasco, no Bootcamp da Infnet.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <%- include('../components/footer.ejs'); %>
+    </body>
+
+</html>

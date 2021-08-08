@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css"> <!-- como na chamada do ejs já falou que a pasta é a public, não precisa voltar pasta
-    e etc, assim ele já entende que o arquivo está na pasta public --> 
-    <title>Document</title>
-</head>
-<body>
-    <h1>Formulário</h1>
+    <%- include('../components/head.ejs', {title: 'Pagina Formulario' }); %>
 
-    <h2> <%= title %> </h2>
-   
-    <ul>
-        <% opcoesStatus.map(item => { %>
-            <li><%= item.label %> </li>    
-        <% }) %>
-        
-    </ul>
+    <body>
+        <%- include('../components/header.ejs'); %>
+        <div class="content">
+        <form action="/curriculum" method="POST">
+            <input
+              type="text"
+              name="nome"
+              placeholder="Insira o seu nome"
+              required
+            />
+    
+            <select name="status" required id="status">
+              <option value="">---</option>
+    
+              <% opcoesStatus.map(item => { %>
+              <option value="<%= item.label %>"><%= item.label %></option>
+              <% }) %>
+            </select>
+    
+            <button>Enviar</button>
+          </form>
+        </div>            
+    </body>
 
-    <ul>
-        <% opcoesTiposDeRestaurante.map(item => { %>
-            <li><%= item.label %> </li>    
-        <% }) %>
-        
-    </ul>
-
-</body>
 </html>
-
