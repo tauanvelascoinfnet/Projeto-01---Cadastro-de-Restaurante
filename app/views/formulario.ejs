@@ -5,24 +5,69 @@
     <body>
         <%- include('../components/header.ejs'); %>
         <div class="content">
-        <form action="/curriculum" method="POST">
-            <input
-              type="text"
-              name="nome"
-              placeholder="Insira o seu nome"
-              required
-            />
+        <form action="/formulario" method="POST">
+            
+            <div class="nomeLogo" display="inline">
+                <div class="nome">
+                    <label for="nome" display="inline">Nome Loja: </label> 
+                    <br>
+                    <input type="text" name="nomeLoja" placeholder="Insira o nome da loja:" required/>                    
+                </div>
+                <div class="logo">
+                    <label for="logo" display="inline">Insira sua Logo: </label>
+                    <br>
+                    <input type="file" />
+                </div>
+            </div>
+        
+            <div class="razaoSocial">
+                <label for="razaoSocial" display="inline">Razão Social: </label> 
+                <br>
+                <input type="text" name="razaoSocial" placeholder="Insira sua Razão Social" required/>                    
+            </div>
+         
+            <div class="email">
+                <label for="email" display="inline">E-mail: </label> 
+                <br>
+                <input type="email" name="email" placeholder="Insira seu E-mail" required/>                    
+            </div>
+        
+            <div class="cnpjTelefone" display="inline">
+                <div class="cnpj">
+                    <label for="cnpj" display="inline">CNPJ: </label> 
+                    <br>
+                    <input type="text" name="cnpj" placeholder="Insira o CNPJ da loja" required/>                    
+                </div>
+                <div class="telefone">
+                    <label for="telefone" display="inline">Telefone: </label>
+                    <br>
+                    <input type="tel" id="telefone" name="telefone">
+                </div>
+            </div>
+
+            <div class=""></div>
+            <div class="statusFuncionarios"></div>
+            <div class="tipoDeRestaurante"></div>
+            <div class="cepBairroRua"></div>
+            <div class="numeroComplementoReferencia"></div>
+            <div class="descricao"></div>
+            <div class="checkSubmeter"></div>
+            
+            
+            
     
             <select name="status" required id="status">
               <option value="">---</option>
-    
               <% opcoesStatus.map(item => { %>
-              <option value="<%= item.label %>"><%= item.label %></option>
+              <option value="<%= item.value %>"><%= item.label %></option>
               <% }) %>
             </select>
     
             <button>Enviar</button>
           </form>
+          <% if (nome) { %>
+            <h2><%= nome %></h2>
+           <% } %>
         </div>            
     </body>
 
