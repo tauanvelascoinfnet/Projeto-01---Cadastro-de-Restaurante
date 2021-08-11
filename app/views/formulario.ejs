@@ -18,7 +18,7 @@
 
                             <div class="form-group">
                                 <label for="datacadastro">Data:</label>
-                                <input type="date" name="datacadastro" required />
+                                <input type="date" id="datacadastro" name="datacadastro" disabled=true required />
                             </div>
                         </div>
 
@@ -67,16 +67,16 @@
                                 <label for="temfuncionarios">Funcionários:</label>
                                 <div class="radio-funcionarios">
                                     <% opcoesTemFuncionario.map(item=> { %>
-                                        <input name = "temfuncionarios" id="temfuncionarios" type="radio" value="<%= item.value %>">
+                                        <input name = "temfuncionarios" onchange="onChangeRadioButtonTemFuncionario(this)" id="temfuncionarios" type="radio" value="<%= item.value %>">
                                         <%= item.label %>
-                                            </option>
+        
                                             <% }) %>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="numerofuncionarios">Quantos:</label>
-                                <input type="number" name="numerofuncionarios" required />
+                                <input type="number" id="numerofuncionarios" name="numerofuncionarios"/>
                             </div>
                         </div>
 
@@ -136,6 +136,7 @@
                         <button>Enviar</button>
                 </form>
             </div>
+            <script src="/js/script.js"></script>
     </body>
 
 </html>

@@ -22,7 +22,11 @@ const getFormulario = (req, res, next) => {
 };
 
 const postFormulario = (req, res, next) => {
-  res.send(req.body);
+  
+  res.json({
+    data: new Date(),
+    informacoes: req.body,
+  });
 };
 
 //abaixo temos que criar o schema pra colocar as regras para a validação
