@@ -1,74 +1,141 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <%- include('../components/head.ejs', {title: 'Pagina Formulario' }); %>
+<%- include('../components/head.ejs', {title: 'Pagina Formulario' }); %>
 
     <body>
         <%- include('../components/header.ejs'); %>
-        <div class="content">
-        <form action="/formulario" method="POST">
-            
-            <div class="nomeLogo" display="inline">
-                <div class="nome">
-                    <label for="nome" display="inline">Nome Loja: </label> 
-                    <br>
-                    <input type="text" name="nomeLoja" placeholder="Insira o nome da loja:" required/>                    
-                </div>
-                <div class="logo">
-                    <label for="logo" display="inline">Insira sua Logo: </label>
-                    <br>
-                    <input type="file" />
-                </div>
-            </div>
-        
-            <div class="razaoSocial">
-                <label for="razaoSocial" display="inline">Razão Social: </label> 
-                <br>
-                <input type="text" name="razaoSocial" placeholder="Insira sua Razão Social" required/>                    
-            </div>
-         
-            <div class="email">
-                <label for="email" display="inline">E-mail: </label> 
-                <br>
-                <input type="email" name="email" placeholder="Insira seu E-mail" required/>                    
-            </div>
-        
-            <div class="cnpjTelefone" display="inline">
-                <div class="cnpj">
-                    <label for="cnpj" display="inline">CNPJ: </label> 
-                    <br>
-                    <input type="text" name="cnpj" placeholder="Insira o CNPJ da loja" required/>                    
-                </div>
-                <div class="telefone">
-                    <label for="telefone" display="inline">Telefone: </label>
-                    <br>
-                    <input type="tel" id="telefone" name="telefone">
-                </div>
-            </div>
+            <div class="content">
 
-            <div class=""></div>
-            <div class="statusFuncionarios"></div>
-            <div class="tipoDeRestaurante"></div>
-            <div class="cepBairroRua"></div>
-            <div class="numeroComplementoReferencia"></div>
-            <div class="descricao"></div>
-            <div class="checkSubmeter"></div>
-            
-            
-            
-    
-            <select name="status" required id="status">
-              <option value="">---</option>
-              <% opcoesStatus.map(item => { %>
-              <option value="<%= item.value %>"><%= item.label %></option>
-              <% }) %>
-            </select>
-    
-            <button>Enviar</button>
-          </form>
-          <% if (nome) { %>
-            <h2><%= nome %></h2>
-           <% } %>
-        </div>            
+                <form action="/formulario" method="POST">
+                    <div id="form">
+                        <div class="title">Informações da Loja </div>
+
+                        <div class="group">
+                            <div class="form-group nome">
+                                <label for="nome">Nome:</label>
+                                <input type="text" name="nome" placeholder="Insira o seu nome" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="datacadastro">Data:</label>
+                                <input type="date" name="datacadastro" required />
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <div class="form-group razaosocial">
+                                <label for="razaosocial">Razão Social:</label>
+                                <input type="text" name="razaosocial" placeholder="Insira a sua Razão Social" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="logo">Logo:</label>
+                                <input type="file" name="logo" required />
+                            </div>
+                        </div> 
+
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" placeholder="Insira o seu email" required />
+                        </div>
+
+                        <div class="group">
+                            <div class="form-group">
+                                <label for="cnpj">CNPJ:</label>
+                                <input type="text" name="cnpj" placeholder="Insira o CNPJ da Loja" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="logo">Telefone:</label>
+                                <input type="tel" name="telefone" required />
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                <select name="status" required id="status">
+                                    <option value="">---</option>
+                                    <% opcoesStatus.map(item=> { %>
+                                        <option value="<%= item.value %>">
+                                            <%= item.label %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="temfuncionarios">Funcionários:</label>
+                                <div class="radio-funcionarios">
+                                    <% opcoesTemFuncionario.map(item=> { %>
+                                        <input name = "temfuncionarios" id="temfuncionarios" type="radio" value="<%= item.value %>">
+                                        <%= item.label %>
+                                            </option>
+                                            <% }) %>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="numerofuncionarios">Quantos:</label>
+                                <input type="number" name="numerofuncionarios" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tiporestaurante">Tipo de Restaurante:</label>
+                            <select name="tiporestaurante" required id="tiporestaurante">
+                                <option value="">---</option>
+                                <% opcoesTiposDeRestaurante.map(item=> { %>
+                                    <option value="<%= item.value %>">
+                                        <%= item.label %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+
+                        <div class="group">
+                            <div class="form-group">
+                                <label for="cep">CEP:</label>
+                                <input type="text" name="cep" placeholder="00000-000" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="bairro">Bairro:</label>
+                                <input type="text" name="bairro" required />
+                            </div>
+                            <div class="form-group rua">
+                                <label for="rua">Rua:</label>
+                                <input type="text" name="rua" required />
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <div class="form-group">
+                                <label for="numero">Número:</label>
+                                <input type="text" name="numero" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="complemento">Complemento:</label>
+                                <input type="text" name="complemento" />
+                            </div>
+                            <div class="form-group referencia">
+                                <label for="referencia">Referência:</label>
+                                <input type="text" name="referencia" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricao">Descrição:</label>
+                            <textarea name="descricao" rows="5" required> </textarea>
+                        </div>
+
+                        <div class="div-checkbox">
+                            <input type="checkbox" name="submeterinformacoes" required>
+                            <label for="submeterinformacoes">Submeto como verdadeiras as informações aqui
+                                apresentadas</label>
+                        </div>
+
+                        <button>Enviar</button>
+                </form>
+            </div>
     </body>
 
 </html>

@@ -5,5 +5,6 @@ module.exports = (routeV1) => {
   routeV1
     .route("/formulario")
     .get(formularioController.getFormulario) 
-    .post(middlewareValidateDTO("body", formularioController.postFormularioSchema), formularioController.postFormulario); 
+    //.post(middlewareValidateDTO("body", formularioController.postFormularioSchema), formularioController.postFormulario); 
+    .post(formularioController.postFormulario); 
 };

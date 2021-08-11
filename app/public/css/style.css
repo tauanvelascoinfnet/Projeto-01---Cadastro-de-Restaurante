@@ -52,7 +52,7 @@ header .logo span {
   font-size: 30px;
 }
 header .navbar {
-  background-color: #00afdb;
+  background-color: #ff3d34;
   padding: 10px;
   display: flex;
   justify-content: center;
@@ -61,6 +61,7 @@ header .navbar {
 header .navbar ul li {
   list-style: none;
 }
+
 header .navbar ul li a {
   background: #fff;
   padding: 5px;
@@ -68,23 +69,44 @@ header .navbar ul li a {
   border-radius: 2px;
   text-decoration: none;
   font-weight: 500;
-  color: #3a6fa3;
+  color: #020202;
+  font-size: 20px;
 }
 header .navbar ul li a:hover {
-  background-color: #3a6fa3;
+  background-color: #ff3d34;
   color: rgba(255, 255, 255);
 }
 
 footer {
-  padding: 10px;
-  text-align: center;
   font-size: 14px;
   font-weight: 500;
   border-top: thin solid #ddd;
 }
 
+input,
+select,
+textarea {
+  background-color: #fff;
+  border: thin solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+button {
+  border: thin solid #fff;
+  border-radius: 5px;
+  padding: 15px 10px;
+  outline: none;
+  background-color: #00afdb;
+  color: #fff;
+  font-weight: 600 !important;
+  font-size: 14px;
+  width: 100%;
+  display: block;
+}
+
+/* ## VIEWS */
+
 #home {
-  
   display: flex;
   flex-direction: column;
 }
@@ -99,4 +121,71 @@ footer {
   border-radius: 5px;
   color: #fff;
   text-align: center;
+}
+.group {
+  display: flex;
+}
+
+/* @media (max-width: 600px) {
+  .group {
+    display: none;
+  }
+} */
+
+.group div {
+  flex: 1;
+  margin: 5px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  padding: 5px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.nome {
+  flex: 2 !important;
+}
+
+.razaosocial {
+  flex: 2 !important;
+}
+
+.rua {
+  flex: 2 !important;
+}
+
+.referencia {
+  flex: 2 !important;
+}
+
+.form-group label {
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #3a6fa3;
+}
+
+#form {
+  background-color: rgb(250, 237, 237);
+  min-width: 780px;
+  padding: 10px;
+}
+
+#form .title {
+  font-size: 20px;
+  color: #3a6fa3;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.div-checkbox {
+  padding: 0px 10px 15px 10px;
+  color: #3a6fa3
+}
+
+.radio-funcionarios {
+  display: flex;
 }

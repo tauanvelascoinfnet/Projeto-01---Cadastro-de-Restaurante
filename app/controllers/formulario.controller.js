@@ -1,5 +1,6 @@
 const statusModel = require('../models/status.loja.model');
 const tipoDeRestauranteModel = require('../models/tipo.de.restaurante.model');
+const temFuncionarioModel = require('../models/tem.funcionario.model');
 const optionsMapper = require('../utils/mappers/select-options.mapper')
 const Joi = require("joi"); // importando a biblioteca do joi pra usar como validador do post
 
@@ -13,6 +14,7 @@ const getFormulario = (req, res, next) => {
 
     opcoesStatus: optionsMapper('descricao', 'id', statusModel.listaStatus()),
     opcoesTiposDeRestaurante: optionsMapper('descricao', 'id', tipoDeRestauranteModel.listaTipoRestaurante()),
+    opcoesTemFuncionario: optionsMapper('descricao', 'id', temFuncionarioModel.listaTemFuncionarios()),
 
   }
   res.render("formulario", viewModel);   //passando a view pro ejs que vai construir a tela, depois da virgula é possivel passar outras coisas, como ex. esse título
