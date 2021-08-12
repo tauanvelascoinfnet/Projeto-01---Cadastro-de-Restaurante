@@ -1,6 +1,6 @@
 const { resolveInclude } = require("ejs")
 
-const statusDB = [
+const temFuncionariosDB = [
     {
         id: 1,
         descricao: "Sim"
@@ -12,9 +12,17 @@ const statusDB = [
 ]
 
 const listaTemFuncionarios = () => {
-    return statusDB
+    return temFuncionariosDB
+}
+
+const buscaPorId = (id) => {
+    const result = temFuncionariosDB.filter((item) => {
+        return item.id === id;
+    })
+   return result.length > 0 ? result[0] : undefined; // se retornar algo, retorna, senão, devolve undefined 
 }
 
 module.exports = {
-    listaTemFuncionarios
+    listaTemFuncionarios,
+    buscaPorId
 }

@@ -12,25 +12,25 @@
 
                         <div class="group">
                             <div class="form-group nome">
-                                <label for="nome">Nome:</label>
-                                <input type="text" name="nome" placeholder="Insira o seu nome" required />
+                                <label for="nome">Nome da Loja:</label>
+                                <input type="text" name="nome" placeholder="Insira o nome da sua loja" required />
                             </div>
 
                             <div class="form-group">
                                 <label for="datacadastro">Data:</label>
-                                <input type="date" id="datacadastro" name="datacadastro" disabled=true required />
+                                <input type="date" id="datacadastro" name="data" readonly required />
                             </div>
                         </div>
 
                         <div class="group">
                             <div class="form-group razaosocial">
                                 <label for="razaosocial">Razão Social:</label>
-                                <input type="text" name="razaosocial" placeholder="Insira a sua Razão Social" required />
+                                <input type="text" name="razaosocial" placeholder="Insira a Razão Social" required />
                             </div>
 
                             <div class="form-group">
                                 <label for="logo">Logo:</label>
-                                <input type="file" name="logo" required />
+                                <input type="text" name="logo" placeholder="Insira o link da imagem" required />
                             </div>
                         </div> 
 
@@ -95,15 +95,15 @@
                         <div class="group">
                             <div class="form-group">
                                 <label for="cep">CEP:</label>
-                                <input type="text" name="cep" placeholder="00000-000" required />
+                                <input type="text" name="cep" class="form-control cep-mask" onchange="onChangeBuscaCep(this)" placeholder="00000-000" maxlength="8" required />
                             </div>
                             <div class="form-group">
                                 <label for="bairro">Bairro:</label>
-                                <input type="text" name="bairro" required />
+                                <input type="text" id="bairro" name="bairro" required />
                             </div>
                             <div class="form-group rua">
                                 <label for="rua">Rua:</label>
-                                <input type="text" name="rua" required />
+                                <input type="text" id="rua" name="rua" required />
                             </div>
                         </div>
 

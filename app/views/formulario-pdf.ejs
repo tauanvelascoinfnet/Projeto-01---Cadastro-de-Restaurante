@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: thin solid #ddd;
+            max-height: 70px;
+            padding: 10px;
+        }
+
+        .content {
+            display: block;
+            flex: 1;
+        }
+
+        .form-control {
+            background-color: #fafafa;
+            padding: 10px;
+            display: flex;
+            margin: 10px;
+        }
+
+        .label {
+            font-weight: 800;
+        }
+
+        footer {
+            padding: 10px;
+            max-height: 70px;
+            border-top: thin solid #ddd;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body onload="carregarLogo()">
+    <header>
+        <h2>Ficha Cadastral do Restaurante</h2>
+    </header>
+    <div class="content">
+        <div class="logo"></div>
+        <div class="form-control">
+            <div class="label">Imagem:</div>
+            <%= logo %>
+        </div>
+        <div class="form-control">
+            <div class="label">Nome: </div>
+            <%= nome %>
+                <div class="label">Data de Cadastro:</div>
+                <%= data %>
+        </div>
+        <div class="form-control">
+            <div class="label">Razão Social:</div>
+            <%= razaosocial %>
+        </div>
+        <div class="form-control">
+            <div class="label">E-mail:</div>
+            <%= email %>
+        </div>
+        <div class="form-control">
+            <div class="label">CNPJ:</div>
+            <%= cnpj %>
+                <div class="label">Telefone:</div>
+                <%= telefone %>
+        </div>
+        <div class="form-control">
+            <div class="label">Status:</div>
+            <%= status %>
+                <div class="label">Possui Funcionários:</div>
+                <%= temfuncionarios %>
+                    <div class="label">Quantos:</div>
+                    <%= numerofuncionarios %>
+        </div>
+        <div class="form-control">
+            <div class="label"> Tipo de Restaurante: </div>
+            <%= tiporestaurante %>
+        </div>
+        <div class="form-control">
+            <div class="label">CEP:</div>
+            <%= cep %>
+                <div class="label">Bairro:</div>
+                <%= bairro %>
+                    <div class="label">Rua:</div>
+                    <%= rua %>
+        </div>
+        <div class="form-control">
+            <div class="label">Número:</div>
+            <%= numero %>
+                <div class="label">Complemento:</div>
+                <%= complemento %>
+                    <div class="label">Referência:</div>
+                    <%= referencia %>
+        </div>
+        <div class="form-control">
+            <div class="label">Descrição:</div>
+            <%= descricao %>
+        </div>
+    </div>
+    <script src="/js/script.js"></script>
+    <footer>Esse é o meu footer</footer>
+    
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+<!-- Tela de erro para validação dos dados do Formulário -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <%- include('../components/head.ejs', { title: 'Pagina de Erro'}); %>
+  <body>
+    <%- include('../components/header.ejs'); %>
+
+    <h1>Exitem erros no projeto</h1>
+
+    <%=errors%>
+
+    <a href="/curriculum">Fazer novamente</a>
+
+    <%- include('../components/footer.ejs'); %>
+  </body>
+</html>
