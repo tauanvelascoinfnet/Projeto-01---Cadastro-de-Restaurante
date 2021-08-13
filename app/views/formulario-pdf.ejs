@@ -42,11 +42,13 @@
             font-weight: 800;
             padding: 0 7px;
         }
+
         .logoImagem {
             text-align: center;
             padding: 10px;
         }
-        .logo{
+
+        .logo {
             max-width: 250px;
             border: 5px solid rgb(21, 20, 94);
         }
@@ -66,7 +68,7 @@
     </header>
     <div class="content">
         <div class="logoImagem">
-            <img src=<%= logo %> class="logo" id="logo" />
+            <img src=<%=logo %> class="logo" id="logo" />
         </div>
         <div class="form-control">
             <div class="label">Nome: </div>
@@ -93,8 +95,10 @@
             <%= status %>
                 <div class="label">Possui Funcionários:</div>
                 <%= temfuncionarios %>
-                    <div class="label">Quantos:</div>
-                    <%= numerofuncionarios %>
+                    <% if (temfuncionarios === 'Sim' ) { %>
+                        <div class="label">Quantos:</div>
+                        <%= numerofuncionarios %>
+                    <% } %>
         </div>
         <div class="form-control">
             <div class="label"> Tipo de Restaurante: </div>
@@ -111,10 +115,14 @@
         <div class="form-control">
             <div class="label">Número:</div>
             <%= numero %>
-                <div class="label">Complemento:</div>
-                <%= complemento %>
+                <% if (complemento !== '' ) { %>
+                    <div class="label">Complemento:</div>
+                    <%= complemento %>
+                <% } %>
+                <% if (referencia !== '' ) { %>
                     <div class="label">Referência:</div>
                     <%= referencia %>
+                <% } %>
         </div>
         <div class="form-control">
             <div class="label">Descrição:</div>
@@ -123,7 +131,7 @@
     </div>
     <script src="/js/script.js"></script>
     <footer>Cadastro de Restaurantes - Todos os direitos reservados.</footer>
-    
+
 </body>
 
 </html>
