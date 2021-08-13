@@ -23,7 +23,7 @@ const postFormulario = (req, res, next) => {
   
   //TODO: montar o viewmodel do pdf
 
-  const { nome, data, razaosocial, logo, email, cnpj, telefone, status, temfuncionarios, numerofuncionarios, tiporestaurante,
+  const { nome, data, razaosocial, logo, email, cnpj, telefone, celular, status, temfuncionarios, numerofuncionarios, tiporestaurante,
           cep, bairro, rua, numero, complemento, referencia, descricao} = req.body; // pegandopost do body as informações
   //usando os métodos pra pegar o label, não o id, que é o que tá passando no post do body
   const statusSelecionado = statusModel.buscaPorId(status).descricao;
@@ -32,7 +32,7 @@ const postFormulario = (req, res, next) => {
 
   // construindo o objeto com as informações pra entregar pro template
   const pdfViewModel = {
-    nome, data, razaosocial, logo, email, cnpj, telefone, status: statusSelecionado, temfuncionarios: temFuncionariosSelecionado,
+    nome, data, razaosocial, logo, email, cnpj, telefone, celular, status: statusSelecionado, temfuncionarios: temFuncionariosSelecionado,
     numerofuncionarios, tiporestaurante: tipoFestauranteSelecionado, cep, bairro, rua, numero, complemento, referencia, descricao,
   };
 
@@ -80,7 +80,8 @@ const postFormularioSchema = Joi.object({
   logo:Joi.string().required(), 
   email: Joi.string().email().required(), //email é texto, é e-mail, obrigatório
   cnpj: Joi.number().required().max(14).min(14),
-  telefone: Joi.number().required().max(11).min(11),
+  telefone: Joi.string().required(),
+  celular: Joi.string(),
   status: Joi.number().required(), // depois vai ver como limitar o options
   temfuncionarios: Joi.number().required(),
   numerofuncionarios: Joi.number().required(),

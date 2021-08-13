@@ -87,8 +87,12 @@
         <div class="form-control">
             <div class="label">CNPJ:</div>
             <%= cnpj %>
-                <div class="label">Telefone:</div>
-                <%= telefone %>
+            <div class="label">Telefone:</div>
+            <%= telefone %>
+            <% if (celular !== '' ) { %>
+                <div class="label">Celular:</div>
+                <%= celular %>
+            <% } %>
         </div>
         <div class="form-control">
             <div class="label">Status:</div>
