@@ -18,7 +18,7 @@ const listaStatus = () => {
 //função de busca de uma opção - no meu projeto não tem uso
 const buscaPorId = (id) => {
     const result = statusDB.filter((item) => {
-        return item.id === id;
+        return item.id === Number(id); // coloquei pra se caso dê erro em outro, vamos ver
     })
    return result.length > 0 ? result[0] : undefined; // se retornar algo, retorna, senão, devolve undefined 
 }

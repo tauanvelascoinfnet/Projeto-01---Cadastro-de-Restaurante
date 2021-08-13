@@ -17,7 +17,7 @@ const listaTemFuncionarios = () => {
 
 const buscaPorId = (id) => {
     const result = temFuncionariosDB.filter((item) => {
-        return item.id === id;
+        return item.id === Number(id);
     })
    return result.length > 0 ? result[0] : undefined; // se retornar algo, retorna, senão, devolve undefined 
 }

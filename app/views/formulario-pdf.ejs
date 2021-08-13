@@ -40,9 +40,15 @@
 
         .label {
             font-weight: 800;
+            padding: 0 7px;
+        }
+        .logoImagem {
+            text-align: center;
+            padding: 10px;
         }
         .logo{
             max-width: 250px;
+            border: 5px solid rgb(21, 20, 94);
         }
 
         footer {
@@ -59,10 +65,8 @@
         <h2>Ficha Cadastral do Restaurante</h2>
     </header>
     <div class="content">
-        <img src=<%= logo %> class="logo" id="logo" />
-        <div class="form-control">
-            <div class="label">Imagem:</div>
-            <%= logo %>
+        <div class="logoImagem">
+            <img src=<%= logo %> class="logo" id="logo" />
         </div>
         <div class="form-control">
             <div class="label">Nome: </div>
@@ -118,7 +122,7 @@
         </div>
     </div>
     <script src="/js/script.js"></script>
-    <footer>Esse é o meu footer</footer>
+    <footer>Cadastro de Restaurantes - Todos os direitos reservados.</footer>
     
 </body>
 

@@ -5,8 +5,8 @@ const bp = require("body-parser"); // permite fazer a transformação em json de
 
 const rotas = require("./routes/rotas");
 
-servidor.use(bp.json());
-servidor.use(bp.urlencoded());
+servidor.use(bp.json()); // servidor estará preparado para receber dados tipo json na requisição, no cabeçalho ou no body
+servidor.use(bp.urlencoded()); // para quando quem vai fazer a request vai entregar os  dados em outro formato, usado para forms html
 
 rotas(servidor); // aqui que passa a instancia do servidor que usa na função do arquivo rotas
 

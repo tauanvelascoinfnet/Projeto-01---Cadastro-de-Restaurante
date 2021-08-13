@@ -34,7 +34,7 @@ const listaTipoRestaurante = () => {
 //função de busca de uma opção - no meu projeto não tem uso
 const buscaPorId = (id) => {
     const result = tipoDeRestauranteDB.filter((item) => {
-        return item.id === id;
+        return item.id === Number(id);
     })
    return result.length > 0 ? result[0] : undefined; // se retornar algo, retorna, senão, devolve undefined 
 }

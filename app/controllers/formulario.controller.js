@@ -10,25 +10,27 @@ const htmlToPdf = require("html-pdf-node");
 const path = require("path");
 
 const getFormulario = (req, res, next) => {
-
+  // construindo viewmodel  
   const viewModel = {
     opcoesStatus: optionsMapper('descricao', 'id', statusModel.listaStatus()),
     opcoesTiposDeRestaurante: optionsMapper('descricao', 'id', tipoDeRestauranteModel.listaTipoRestaurante()),
     opcoesTemFuncionario: optionsMapper('descricao', 'id', temFuncionarioModel.listaTemFuncionarios()),
   }
-  res.render("formulario", viewModel);   //passando a view pro ejs que vai construir a tela, depois da virgula é possivel passar outras coisas, como ex. esse título
+  res.render("formulario", viewModel);   //passando a viewmodel pro ejs que vai construir a tela, depois da virgula é possivel passar outras coisas, como ex. esse título
 };
 
 const postFormulario = (req, res, next) => {
   
-  //TODO: montar o viewmodel
+  //TODO: montar o viewmodel do pdf
 
   const { nome, data, razaosocial, logo, email, cnpj, telefone, status, temfuncionarios, numerofuncionarios, tiporestaurante,
-          cep, bairro, rua, numero, complemento, referencia, descricao} = req.body;
-  const statusSelecionado = statusModel.buscaPorId(status);
-  const temFuncionariosSelecionado = temFuncionarioModel.buscaPorId(temfuncionarios);
-  const tipoFestauranteSelecionado = tipoDeRestauranteModel.buscaPorId(tiporestaurante);
+          cep, bairro, rua, numero, complemento, referencia, descricao} = req.body; // pegandopost do body as informações
+  //usando os métodos pra pegar o label, não o id, que é o que tá passando no post do body
+  const statusSelecionado = statusModel.buscaPorId(status).descricao;
+  const temFuncionariosSelecionado = temFuncionarioModel.buscaPorId(temfuncionarios).descricao;
+  const tipoFestauranteSelecionado = tipoDeRestauranteModel.buscaPorId(tiporestaurante).descricao;
 
+  // construindo o objeto com as informações pra entregar pro template
   const pdfViewModel = {
     nome, data, razaosocial, logo, email, cnpj, telefone, status: statusSelecionado, temfuncionarios: temFuncionariosSelecionado,
     numerofuncionarios, tiporestaurante: tipoFestauranteSelecionado, cep, bairro, rua, numero, complemento, referencia, descricao,
@@ -57,9 +59,9 @@ const postFormulario = (req, res, next) => {
   };
 
   htmlToPdf.generatePdf(file, configuracoes)
-  .then((resultPromessa) => {
-      res.contentType("application/pdf");
-      res.send(resultPromessa);
+  .then((resultPromessa) => { // gatilho para quando terminar o sucesso dessa promessa
+      res.contentType("application/pdf"); // o resultado será um arquivo .pfd. se não colocar isso, ele fará o download de um arquivo, ao invés de exibir o pdf
+      res.send(resultPromessa); // ordem pra enviar o arquivo que foi gerado
     });
 
 };

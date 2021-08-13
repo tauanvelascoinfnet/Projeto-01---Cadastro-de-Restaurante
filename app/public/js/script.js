@@ -1,3 +1,19 @@
+// const IMask = require('imask');
+
+// var cep = document.getElementsById('cep');
+// var maskOptionsCEP = {
+//     mask: '00000-000'
+// };
+// var mask = IMask(cep, maskOptionsCEP);
+
+// var CNPJ = document.getElementsById('cnpj');
+// var maskOptionsCNPJ = { 
+//     maskCNPJ: '00.000.000/0000-00'
+// };
+
+// var maskCNPJ = IMask(CNPJ, maskOptionsCNPJ);
+
+
 
 function onChangeRadioButtonTemFuncionario(elementoRadio) {
 
@@ -26,17 +42,17 @@ async function onChangeBuscaCep(elementoText) {
         const bairroRetornoCep = data.bairro;
         const ruaRetornoCep = data.logradouro;
 
-        bairro.value = bairroRetornoCep;
-        rua.value = ruaRetornoCep;
+        if (bairroRetornoCep !== undefined) {
+            bairro.value = bairroRetornoCep;
+            rua.value = ruaRetornoCep;
+        } else {
+            bairro.value = "";
+            rua.value = "";
+        }
+
     } else {
         bairro.value = "";
         rua.value = "";
     }
 }
 
-// var cepMascara = document.getElementById('cep');
-// var maskOptions = {
-//   mask: '+00000-000'
-// };
-// var mask = IMask(cepMascara, maskOptions);
-// console.log(mask);
