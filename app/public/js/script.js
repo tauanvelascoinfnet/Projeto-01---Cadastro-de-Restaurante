@@ -34,18 +34,6 @@ async function onChangeBuscaCep(elementoText) {
     }
 }
 
-const logo = document.getElementsByClassName("logo")[0];
-
-async function carregarLogo() {
-    const response = await fetch("https://api.github.com/users/tauanvelascoinfnet");
-    const data = await response.json();
-
-        const img = document.createElement("img");
-        img.setAttribute("id", "fotoPerfil");
-        img.setAttribute("src", data.avatar_url);
-        logo.append(img);
-}
-
 // var cepMascara = document.getElementById('cep');
 // var maskOptions = {
 //   mask: '+00000-000'
