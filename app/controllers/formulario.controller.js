@@ -22,17 +22,18 @@ const getFormulario = (req, res, next) => {
 const postFormulario = (req, res, next) => {
   
   //TODO: montar o viewmodel do pdf
-
   const { nome, data, razaosocial, logo, email, cnpj, telefone, celular, status, temfuncionarios, numerofuncionarios, tiporestaurante,
           cep, bairro, rua, numero, complemento, referencia, descricao} = req.body; // pegandopost do body as informações
   //usando os métodos pra pegar o label, não o id, que é o que tá passando no post do body
   const statusSelecionado = statusModel.buscaPorId(status).descricao;
   const temFuncionariosSelecionado = temFuncionarioModel.buscaPorId(temfuncionarios).descricao;
   const tipoFestauranteSelecionado = tipoDeRestauranteModel.buscaPorId(tiporestaurante).descricao;
+  var dataFormatada = new Date(data);
+  dataFormatada.setDate(dataFormatada.getDate() + 1);
 
   // construindo o objeto com as informações pra entregar pro template
   const pdfViewModel = {
-    nome, data, razaosocial, logo, email, cnpj, telefone, celular, status: statusSelecionado, temfuncionarios: temFuncionariosSelecionado,
+    nome, data: dataFormatada.toLocaleDateString(), razaosocial, logo, email, cnpj, telefone, celular, status: statusSelecionado, temfuncionarios: temFuncionariosSelecionado,
     numerofuncionarios, tiporestaurante: tipoFestauranteSelecionado, cep, bairro, rua, numero, complemento, referencia, descricao,
   };
 
