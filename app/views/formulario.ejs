@@ -80,7 +80,7 @@
 
                             <div class="form-group">
                                 <label for="numerofuncionarios">Quantos:</label>
-                                <input type="number" id="numerofuncionarios" name="numerofuncionarios"/>
+                                <input type="number" id="numerofuncionarios" min="1" name="numerofuncionarios" required/>
                             </div>
                         </div>
 
@@ -115,7 +115,7 @@
                         <div class="group">
                             <div class="form-group">
                                 <label for="numero">Número:</label>
-                                <input type="text" name="numero" required />
+                                <input type="text" name="numero" onkeypress="return somenteNumeros(event)" maxlength="5" required />
                             </div>
                             <div class="form-group">
                                 <label for="complemento">Complemento:</label>
@@ -129,7 +129,7 @@
 
                         <div class="form-group">
                             <label for="descricao">Descrição:</label>
-                            <textarea name="descricao" rows="5" required> </textarea>
+                            <textarea name="descricao" rows="5" maxlength="400" required> </textarea>
                         </div>
 
                         <div class="div-checkbox">

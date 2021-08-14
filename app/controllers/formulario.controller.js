@@ -64,7 +64,6 @@ const postFormulario = (req, res, next) => {
       res.contentType("application/pdf"); // o resultado será um arquivo .pfd. se não colocar isso, ele fará o download de um arquivo, ao invés de exibir o pdf
       res.send(resultPromessa); // ordem pra enviar o arquivo que foi gerado
     });
-
 };
 
 //abaixo temos que criar o schema pra colocar as regras para a validação
@@ -76,26 +75,26 @@ const postFormularioSchema = Joi.object({
     }
     return helpers.error("any.invalid");
   }), //nome é texto, 30 caracteres máximo, mínimo 5, obrigatório, pelo menos 2 palavras, pra isso a validação com o custom
-  data: Joi.date().required(),
+  data: Joi.date().iso().required(),
   razaosocial: Joi.string().max(30).min(5).required(),
-  logo:Joi.string().required(), 
+  logo: Joi.string().required(), 
   email: Joi.string().email().required(), //email é texto, é e-mail, obrigatório
-  cnpj: Joi.number().required().max(14).min(14),
-  telefone: Joi.string().required(),
-  celular: Joi.string(),
+  cnpj: Joi.string().max(18).min(18).required(),
+  telefone: Joi.string().required().max(13).min(13),
+  celular: Joi.string().max(14).min(14).allow(""),
   status: Joi.number().required(), // depois vai ver como limitar o options
   temfuncionarios: Joi.number().required(),
-  numerofuncionarios: Joi.number().required(),
+  numerofuncionarios: Joi.number().allow(""),
   tiporestaurante: Joi.number().required(),
-  cep: Joi.number().required().max(8).min(8),
+  cep: Joi.string().required().max(10).min(10),
   bairro: Joi.string().max(20).required(),
-  rua: Joi.string().max(40).required(),
-  numero: Joi.number().required().max(6),
-  complemento: Joi.string().max(25).allow(""), // pra permitir que seja vazio
-  referencia: Joi.string().max(30),
-  descricao: Joi.string().required(),
-});
-//}).unknown(true); // permite que receba valores neste momento que ele não conhece no esquema... (coisas a mais, por ex) 
+  rua: Joi.string().max(30).required(),
+  numero: Joi.number().required().max(99999),
+  complemento: Joi.string().max(25).allow(""), // pra permitir que seja vazio o allow
+  referencia: Joi.string().max(30).allow(""),
+  descricao: Joi.string().max(400).required(),
+// });
+}).unknown(true); // permite que receba valores neste momento que ele não conhece no esquema... (coisas a mais, por ex) 
 
 module.exports = {
   getFormulario,
