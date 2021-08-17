@@ -196,3 +196,18 @@ button {
 .radio-funcionarios {
   display: flex;
 }
+
+.voltar {
+  background-color: #ff3d34;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}

@@ -2,16 +2,26 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-  <%- include('../components/head.ejs', { title: 'Pagina de Erro'}); %>
+<%- include('../components/head.ejs', { title: 'Pagina de Erro' }); %>
+
   <body>
     <%- include('../components/header.ejs'); %>
 
-    <h1>Exitem erros no projeto</h1>
+      <h1>Exitem erros no projeto</h1>
 
-    <%=errors%>
+      <div class="erros">
+        <ul>
+          <% errors.map(item=> { %>
+            <li>
+              <%= item %>
+            </li>
+            <% }) %>
+        </ul>
+      </div>
 
-    <a href="/curriculum">Fazer novamente</a>
+      <a class="voltar" href="javascript:history.back()">Preencher Novamente</a>
 
-    <%- include('../components/footer.ejs'); %>
+      <!-- <%- include('../components/footer.ejs'); %> -->
   </body>
+
 </html>

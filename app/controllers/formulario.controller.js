@@ -20,10 +20,10 @@ const getFormulario = (req, res, next) => {
 };
 
 const postFormulario = (req, res, next) => {
-  
+
   //TODO: montar o viewmodel do pdf
   const { nome, data, razaosocial, logo, email, cnpj, telefone, celular, status, temfuncionarios, numerofuncionarios, tiporestaurante,
-          cep, bairro, rua, numero, complemento, referencia, descricao} = req.body; // pegandopost do body as informações
+    cep, bairro, rua, numero, complemento, referencia, descricao } = req.body; // pegandopost do body as informações
   //usando os métodos pra pegar o label, não o id, que é o que tá passando no post do body
   const statusSelecionado = statusModel.buscaPorId(status).descricao;
   const temFuncionariosSelecionado = temFuncionarioModel.buscaPorId(temfuncionarios).descricao;
@@ -44,14 +44,14 @@ const postFormulario = (req, res, next) => {
   console.log(filePath);
 
   const templateHtml = fs.readFileSync(filePath, 'utf8');
-  
+
   //TODO: montar o pdf
   const htmlPronto = ejs.render(templateHtml, pdfViewModel);
 
   //TODO: retornar o pdf
 
   const file = {
-    content: htmlPronto  
+    content: htmlPronto
   };
 
   const configuracoes = {
@@ -60,7 +60,7 @@ const postFormulario = (req, res, next) => {
   };
 
   htmlToPdf.generatePdf(file, configuracoes)
-  .then((resultPromessa) => { // gatilho para quando terminar o sucesso dessa promessa
+    .then((resultPromessa) => { // gatilho para quando terminar o sucesso dessa promessa
       res.contentType("application/pdf"); // o resultado será um arquivo .pfd. se não colocar isso, ele fará o download de um arquivo, ao invés de exibir o pdf
       res.send(resultPromessa); // ordem pra enviar o arquivo que foi gerado
     });
@@ -68,36 +68,54 @@ const postFormulario = (req, res, next) => {
 
 //abaixo temos que criar o schema pra colocar as regras para a validação
 const postFormularioSchema = Joi.object({
-  nome: Joi.string().max(30).min(5).required().custom((value, helpers) => {
+  nome: Joi.string().max(30).min(5).required().label("Nome: ").custom((value, helpers) => {
     const result = value.split(' ')
     if (result.length > 1) {
       return value;
     }
-    return helpers.error("any.invalid");
+    // return helpers.error("any.invalid");
+    return helpers.error("Nome precisa de pelo menos duas palavras!");
   }), //nome é texto, 30 caracteres máximo, mínimo 5, obrigatório, pelo menos 2 palavras, pra isso a validação com o custom
-  data: Joi.date().iso().required(),
-  razaosocial: Joi.string().max(30).min(5).required(),
-  logo: Joi.string().required(), 
-  email: Joi.string().email().required(), //email é texto, é e-mail, obrigatório
-  cnpj: Joi.string().max(18).min(18).required(),
-  telefone: Joi.string().required().max(13).min(13),
-  celular: Joi.string().max(14).min(14).allow(""),
-  status: Joi.number().required(), // depois vai ver como limitar o options
-  temfuncionarios: Joi.number().required(),
-  numerofuncionarios: Joi.number().allow(""),
-  tiporestaurante: Joi.number().required(),
-  cep: Joi.string().required().max(10).min(10),
-  bairro: Joi.string().max(20).required(),
-  rua: Joi.string().max(30).required(),
-  numero: Joi.number().required().max(99999),
-  complemento: Joi.string().max(25).allow(""), // pra permitir que seja vazio o allow
-  referencia: Joi.string().max(30).allow(""),
-  descricao: Joi.string().max(400).required(),
-// });
+  data: Joi.date().iso().label("Data: ").required(),
+  razaosocial: Joi.string().max(30).min(5).label("Razão Social: ").required(),
+  logo: Joi.string().label("Logo: ").required().custom((value, helpers) => {
+
+    const reg = /(?:\.([^.]+))?$/;
+    var extensao = reg.exec(value)[1];
+
+    if (extensao == "png" || extensao == "jpeg" || extensao == "jpg") {
+      return value;
+    } 
+    else {
+      return helpers.error("A logo precisa ser um link de imagem com extensão png, jpeg ou jpg!");
+    }
+
+  }),
+  email: Joi.string().email().label("E-mail: ").required(), //email é texto, é e-mail, obrigatório
+  cnpj: Joi.string().max(18).min(18).label("CNPJ: ").required(),
+  telefone: Joi.string().label("Telefone: ").required().max(13).min(13),
+  celular: Joi.string().label("Celular: ").max(14).min(14).allow(""),
+  status: Joi.number().label("Status").required(), // depois vai ver como limitar o options
+  temfuncionarios: Joi.number().label("Tem Funcionários:").required(),
+  numerofuncionarios: Joi.number().label("Número de Funcionários: ").allow(""),
+  tiporestaurante: Joi.number().label("Tipo de Restaurante: ").required(),
+  cep: Joi.string().label("CEP: ").required().max(10).min(10),
+  bairro: Joi.string().label("Bairro: ").max(20).required(),
+  rua: Joi.string().label("Rua: ").max(30).required(),
+  numero: Joi.number().label("Número: ").required().max(99999),
+  complemento: Joi.string().label("Complemento: ").max(25).allow(""), // pra permitir que seja vazio o allow
+  referencia: Joi.string().label("Referência: ").max(30).allow(""),
+  descricao: Joi.string().max(20).label("Descrição: ").required(),
+  // });
 }).unknown(true); // permite que receba valores neste momento que ele não conhece no esquema... (coisas a mais, por ex) 
+
+const getFormularioSchema = Joi.object({
+  teste: Joi.number().required(),
+});
 
 module.exports = {
   getFormulario,
   postFormulario,
-  postFormularioSchema
+  postFormularioSchema,
+  getFormularioSchema
 };
