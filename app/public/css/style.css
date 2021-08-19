@@ -211,3 +211,8 @@ button {
 h1 {
   text-align: center;
 }
+
+.erros {
+  padding: 10px;
+  text-align: center;
+}

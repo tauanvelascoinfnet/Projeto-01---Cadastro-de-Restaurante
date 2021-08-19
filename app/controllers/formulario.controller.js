@@ -68,17 +68,26 @@ const postFormulario = (req, res, next) => {
 
 //abaixo temos que criar o schema pra colocar as regras para a validação
 const postFormularioSchema = Joi.object({
-  nome: Joi.string().max(30).min(5).required().label("Nome: ").custom((value, helpers) => {
+  nome: Joi.string().max(30).min(5).required().custom((value, helpers) => {
     const result = value.split(' ')
     if (result.length > 1) {
       return value;
     }
-    // return helpers.error("any.invalid");
-    return helpers.error("Nome precisa de pelo menos duas palavras!");
+    return helpers.error("any.invalid");
+  }).messages({
+    'string.empty': "O campo 'Nome' precisa ser preenchido!",
+    'any.invalid': "O campo 'Nome' precisa de pelo menos duas palavras!",
+    'string.min': "O campo 'Nome' precisa de pelo menos 5 caracteres!"
   }), //nome é texto, 30 caracteres máximo, mínimo 5, obrigatório, pelo menos 2 palavras, pra isso a validação com o custom
-  data: Joi.date().iso().label("Data: ").required(),
-  razaosocial: Joi.string().max(30).min(5).label("Razão Social: ").required(),
-  logo: Joi.string().label("Logo: ").required().custom((value, helpers) => {
+  data: Joi.date().iso().label("Data: ").required().messages({
+    'date.empty': "O campo 'Data' precisa ser preenchido!"
+  }),
+  razaosocial: Joi.string().max(40).min(5).required().messages({
+    'string.empty': "O campo 'Razão Social' precisa ser preenchido!",
+    'string.min': "O campo 'Razão Social' precisa de pelo menos 5 caracteres!",
+    'string.max': "O campo 'Razão Social' pode ter no máximo 40 caracteres!"
+  }),
+  logo: Joi.string().required().custom((value, helpers) => {
 
     const reg = /(?:\.([^.]+))?$/;
     var extensao = reg.exec(value)[1];
@@ -87,25 +96,70 @@ const postFormularioSchema = Joi.object({
       return value;
     } 
     else {
-      return helpers.error("A logo precisa ser um link de imagem com extensão png, jpeg ou jpg!");
+      return helpers.error("any.invalid");
+      // return helpers.error("A logo precisa ser um link de imagem com extensão png, jpeg ou jpg!");
     }
 
+  }).messages({
+    'any.invalid': "A logo precisa ser um link de imagem com extensão png, jpeg ou jpg!",
+    'any.required': "O campo Logo precisa ser preenchido!"
   }),
-  email: Joi.string().email().label("E-mail: ").required(), //email é texto, é e-mail, obrigatório
-  cnpj: Joi.string().max(18).min(18).label("CNPJ: ").required(),
-  telefone: Joi.string().label("Telefone: ").required().max(13).min(13),
-  celular: Joi.string().label("Celular: ").max(14).min(14).allow(""),
-  status: Joi.number().label("Status").required(), // depois vai ver como limitar o options
-  temfuncionarios: Joi.number().label("Tem Funcionários:").required(),
-  numerofuncionarios: Joi.number().label("Número de Funcionários: ").allow(""),
-  tiporestaurante: Joi.number().label("Tipo de Restaurante: ").required(),
-  cep: Joi.string().label("CEP: ").required().max(10).min(10),
-  bairro: Joi.string().label("Bairro: ").max(20).required(),
-  rua: Joi.string().label("Rua: ").max(30).required(),
-  numero: Joi.number().label("Número: ").required().max(99999),
-  complemento: Joi.string().label("Complemento: ").max(25).allow(""), // pra permitir que seja vazio o allow
-  referencia: Joi.string().label("Referência: ").max(30).allow(""),
-  descricao: Joi.string().max(20).label("Descrição: ").required(),
+  email: Joi.string().email().required().messages({
+    'string.empty': "O campo 'E-mail' precisa ser preenchido!"
+  }), //email é texto, é e-mail, obrigatório
+  cnpj: Joi.string().max(18).min(18).required().messages({
+    'string.empty': "O campo 'CNPJ' precisa ser preenchido!",
+    'string.min': "O campo 'CNPJ' precisa ter 14 dígitos!",
+    'string.max': "O campo 'CNPJ' precisa ter 14 dígitos!"
+  }),
+  telefone: Joi.string().required().max(13).min(13).messages({
+    'string.empty': "O campo 'Telefone' precisa ser preenchido!",
+    'string.min': "O campo 'Telefone' precisa ter 10 dígitos (DDD + número)!",
+    'string.max': "O campo 'Telefone' precisa ter 10 dígitos (DDD + número)!"
+  }),
+  celular: Joi.string().max(14).min(14).allow("").messages({
+    'string.min': "O campo 'Celular' precisa ter 11 dígitos (DDD + número)!",
+    'string.max': "O campo 'Celular' precisa ter 11 dígitos (DDD + número)!"
+  }),
+  status: Joi.number().required().messages({
+    'number.empty': "O campo 'Status' precisa ser escolhido!"
+  }), 
+  temfuncionarios: Joi.number().required().messages({
+    'number.empty': "O campo 'Funcionários' precisa ser preenchido!"
+  }),
+  numerofuncionarios: Joi.number().allow("").max(100).messages({
+    'number.max': "No máximo 100 funcionários! Burguês safado!"
+  }),
+  tiporestaurante: Joi.number().required().messages({
+    'number.empty': "O campo 'Tipo de Restaurante' precisa ser escolhido!"
+  }),
+  cep: Joi.string().required().max(10).min(10).messages({
+    'string.empty': "O campo 'CEP' precisa ser preenchido!",
+    'string.min': "O campo 'CEP' precisa ter 8 dígitos!",
+    'string.max': "O campo 'CEP' precisa ter 8 dígitos!"
+  }),
+  bairro: Joi.string().max(25).required().messages({
+    'string.empty': "O campo 'Bairro' precisa ser preenchido!",
+    'string.max': "O campo 'Bairro' pode ter no máximo 25 caracteres!"
+  }),
+  rua: Joi.string().max(40).required().messages({
+    'string.empty': "O campo 'Rua' precisa ser preenchido!",
+    'string.max': "O campo 'Rua' pode ter no máximo 40 caracteres!"
+  }),
+  numero: Joi.number().required().max(99999).messages({
+    'number.empty': "O campo 'Número' precisa ser preenchido!",
+    'number.max': "O campo 'Número' pode ter no máximo 5 dígitos!"
+  }),
+  complemento: Joi.string().max(25).allow("").messages({ // pra permitir que seja vazio, o allow
+    'string.max': "O campo 'Complemento' pode ter no máximo 25 caracteres!"
+  }), 
+  referencia: Joi.string().max(30).allow("").messages({ 
+    'string.max': "O campo 'Referência' pode ter no máximo 30 caracteres!"
+  }),
+  descricao: Joi.string().max(400).required().messages({
+    'string.empty': "O Descrição Nome precisa ser preenchido!",
+    'string.max': "O campo Descrição pode ter no máximo 400 caracteres!"
+  }),
   // });
 }).unknown(true); // permite que receba valores neste momento que ele não conhece no esquema... (coisas a mais, por ex) 
 
