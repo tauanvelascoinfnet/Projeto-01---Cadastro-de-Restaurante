@@ -32,7 +32,7 @@
                                 <label for="logo">Logo:</label>
                                 <input type="text" name="logo" placeholder="Insira o link da imagem" required />
                             </div>
-                        </div> 
+                        </div>
 
                         <div class="form-group">
                             <label for="email">Email:</label>
@@ -42,16 +42,19 @@
                         <div class="group">
                             <div class="form-group">
                                 <label for="cnpj">CNPJ:</label>
-                                <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000.0000-00" maxlength="18" onkeypress="return mascaraCnpj(event)" required />
+                                <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000.0000-00" maxlength="18"
+                                    onkeypress="return mascaraCnpj(event)" required />
                             </div>
 
                             <div class="form-group">
                                 <label for="telefone">Telefone:</label>
-                                <input type="tel" id ="telefone" name="telefone" maxlength="13" onkeypress="return mascaraTelefone(event)" placeholder="(00)0000-0000" required />
+                                <input type="tel" id="telefone" name="telefone" maxlength="13"
+                                    onkeypress="return mascaraTelefone(event)" placeholder="(00)0000-0000" required />
                             </div>
                             <div class="form-group">
-                                <label for="celular">Celular:</label>                
-                                <input type="tel" id = "celular" name="celular" maxlength="14" onkeypress="return mascaraCelular(event)" placeholder="(00)00000-0000"/>
+                                <label for="celular">Celular:</label>
+                                <input type="tel" id="celular" name="celular" maxlength="14"
+                                    onkeypress="return mascaraCelular(event)" placeholder="(00)00000-0000" />
                             </div>
                         </div>
 
@@ -71,16 +74,16 @@
                                 <label for="temfuncionarios">Funcionários:</label>
                                 <div class="radio-funcionarios">
                                     <% opcoesTemFuncionario.map(item=> { %>
-                                        <input name = "temfuncionarios" onchange="onChangeRadioButtonTemFuncionario(this)" id="temfuncionarios" type="radio" value="<%= item.value %>">
+                                        <input name="temfuncionarios" onchange="onChangeRadioButtonTemFuncionario(this)"
+                                            id="temfuncionarios" type="radio" value="<%= item.value %>">
                                         <%= item.label %>
-        
                                             <% }) %>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="numerofuncionarios">Quantos:</label>
-                                <input type="number" id="numerofuncionarios" min="1" name="numerofuncionarios" required/>
+                                <input type="number" id="numerofuncionarios" min="1" name="numerofuncionarios" onkeypress="somenteNumeros(event)" required />
                             </div>
                         </div>
 
@@ -99,8 +102,9 @@
                         <div class="group">
                             <div class="form-group">
                                 <label for="cep">CEP:</label>
-                                <input type="text" name="cep" id="cep" class="form-control cep-mask" onchange="onChangeBuscaCep(this)" placeholder="00000-000" 
-                                maxlength="10" onkeypress="return mascaraCep(event)"required />
+                                <input type="text" name="cep" id="cep" class="form-control cep-mask"
+                                    onchange="onChangeBuscaCep(this)" placeholder="00000-000" maxlength="10"
+                                    onkeypress="return mascaraCep(event)" required />
                             </div>
                             <div class="form-group">
                                 <label for="bairro">Bairro:</label>
@@ -115,7 +119,8 @@
                         <div class="group">
                             <div class="form-group">
                                 <label for="numero">Número:</label>
-                                <input type="text" name="numero" onkeypress="return somenteNumeros(event)" maxlength="5" required />
+                                <input type="text" name="numero" onkeypress="return somenteNumeros(event)" maxlength="5"
+                                    required />
                             </div>
                             <div class="form-group">
                                 <label for="complemento">Complemento:</label>

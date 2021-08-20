@@ -64,7 +64,7 @@ function mascaraTelefone(evt) {
     var tam = tel.value.length;
 
     var tecla = evt.keyCode;
-    if (tecla != 8 && tecla >= 46 && tecla <= 57) {
+    if (tecla != 8 && tecla >= 48 && tecla <= 57) {
         switch (tam) {
             case 1:
                 tel.value = "(" + tel.value;
@@ -87,7 +87,7 @@ function mascaraCelular(evt) {
     var tam = tel.value.length;
 
     var tecla = evt.keyCode;
-    if (tecla != 8 && tecla >= 46 && tecla <= 57) {
+    if (tecla != 8 && tecla >= 48 && tecla <= 57) {
         switch (tam) {
             case 1:
                 tel.value = "(" + tel.value;
@@ -110,7 +110,7 @@ function mascaraCep(evt) {
     var tam = cep.value.length;
 
     var tecla = evt.keyCode;
-    if (tecla != 8 && tecla >= 46 && tecla <= 57) {
+    if (tecla != 8 && tecla >= 48 && tecla <= 57) {
         switch (tam) {
             case 2:
                 cep.value = cep.value + ".";
@@ -130,7 +130,7 @@ function mascaraCnpj(evt) {
     var tam = cnpj.value.length;
 
     var tecla = evt.keyCode;
-    if (tecla != 8 && tecla >= 46 && tecla <= 57) {
+    if (tecla != 8 && tecla >= 48 && tecla <= 57) {
         switch (tam) {
             case 2:
                 cnpj.value = cnpj.value + ".";
@@ -157,4 +157,14 @@ for (let i = 0; i < idsQuery.length; i++) {
     description.addEventListener("paste", function (e) {
         e.preventDefault();
     });
+}
+
+function somenteNumeros(evt) {
+    
+    var tecla = evt.keyCode;
+    if (tecla >= 48 && tecla <= 57) {
+       return true;
+    } else {
+        return false;
+    }
 }
