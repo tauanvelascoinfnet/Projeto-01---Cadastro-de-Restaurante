@@ -34,7 +34,7 @@ async function onChangeBuscaCep(elementoText) {
     var cepSemTraco = elementoText.value.replace(/\.|\-/g, '');
 
     if (cepSemTraco !== "" && cepSemTraco.length == 8) {
-       
+
         const enderecoBuscaViaCep = "https://viacep.com.br/ws/" + cepSemTraco + "/json/";
 
         const response = await fetch(enderecoBuscaViaCep);
@@ -62,9 +62,9 @@ function mascaraTelefone(evt) {
     var tel = document.getElementById("telefone");
 
     var tam = tel.value.length;
-    
+
     var tecla = evt.keyCode;
-    if(tecla != 8){
+    if (tecla != 8) {
         switch (tam) {
             case 1:
                 tel.value = "(" + tel.value;
@@ -83,9 +83,9 @@ function mascaraCelular(evt) {
     var tel = document.getElementById("celular");
 
     var tam = tel.value.length;
-    
+
     var tecla = evt.keyCode;
-    if(tecla != 8){
+    if (tecla != 8) {
         switch (tam) {
             case 1:
                 tel.value = "(" + tel.value;
@@ -104,9 +104,9 @@ function mascaraCep(evt) {
     var cep = document.getElementById("cep");
 
     var tam = cep.value.length;
-    
+
     var tecla = evt.keyCode;
-    if(tecla != 8){
+    if (tecla != 8) {
         switch (tam) {
             case 2:
                 cep.value = cep.value + ".";
@@ -122,9 +122,9 @@ function mascaraCnpj(evt) {
     var cnpj = document.getElementById("cnpj");
 
     var tam = cnpj.value.length;
-    
+
     var tecla = evt.keyCode;
-    if(tecla != 8){
+    if (tecla != 8) {
         switch (tam) {
             case 2:
                 cnpj.value = cnpj.value + ".";
@@ -149,4 +149,13 @@ function somenteNumeros(evt) {
     } else {
         return false;
     }
+}
+
+const idsQuery = ['#cnpj', '#telefone', '#celular', '#cep'];
+
+for (let i = 0; i < idsQuery.length; i++) {
+    var description = document.querySelector(idsQuery[i]);
+    description.addEventListener("paste", function (e) {
+        e.preventDefault();
+    });
 }

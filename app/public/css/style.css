@@ -43,10 +43,10 @@ header .logo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  margin: 10px;
 }
 header .logo img {
-  max-width: 50px;
+  max-width: 70px;
 }
 header .logo span {
   font-size: 30px;
@@ -111,7 +111,7 @@ button {
 }
 #home img {
   max-width: 800px;
-  padding: 0px 0px 10px 0px;
+  padding: 0px 0px 15px 0px;
 }
 /*  vai mudar */
 #home a {
@@ -132,12 +132,6 @@ button {
 .group {
   display: flex;
 }
-
-/* @media (max-width: 600px) {
-  .group {
-    display: none;
-  }
-} */
 
 .group div {
   flex: 1;

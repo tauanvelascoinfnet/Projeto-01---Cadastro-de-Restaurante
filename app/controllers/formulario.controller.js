@@ -102,10 +102,11 @@ const postFormularioSchema = Joi.object({
 
   }).messages({
     'any.invalid': "A logo precisa ser um link de imagem com extensão png, jpeg ou jpg!",
-    'any.required': "O campo Logo precisa ser preenchido!"
+    'any.required': "O campo 'Logo' precisa ser preenchido!"
   }),
   email: Joi.string().email().required().messages({
-    'string.empty': "O campo 'E-mail' precisa ser preenchido!"
+    'string.empty': "O campo 'E-mail' precisa ser preenchido!",
+    'string.email': "O campo 'E-mail' precisa de um e-mail válido!"
   }), //email é texto, é e-mail, obrigatório
   cnpj: Joi.string().max(18).min(18).required().messages({
     'string.empty': "O campo 'CNPJ' precisa ser preenchido!",
