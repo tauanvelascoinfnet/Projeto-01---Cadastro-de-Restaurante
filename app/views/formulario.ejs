@@ -42,16 +42,16 @@
                         <div class="group">
                             <div class="form-group">
                                 <label for="cnpj">CNPJ:</label>
-                                <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000.0000-00" maxlength="18" onkeyup="return mascaraCnpj(event)" onkeypress="return somenteNumeros(event)" required />
+                                <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000.0000-00" maxlength="18" onkeypress="return mascaraCnpj(event)" required />
                             </div>
 
                             <div class="form-group">
                                 <label for="telefone">Telefone:</label>
-                                <input type="tel" id ="telefone" name="telefone" maxlength="13" onkeyup="return mascaraTelefone(event)" onkeypress="return somenteNumeros(event)" placeholder="(00)0000-0000" required />
+                                <input type="tel" id ="telefone" name="telefone" maxlength="13" onkeypress="return mascaraTelefone(event)" placeholder="(00)0000-0000" required />
                             </div>
                             <div class="form-group">
                                 <label for="celular">Celular:</label>                
-                                <input type="tel" id = "celular" name="celular" maxlength="14" onkeyup="return mascaraCelular(event)" onkeypress="return somenteNumeros(event)" placeholder="(00)00000-0000"/>
+                                <input type="tel" id = "celular" name="celular" maxlength="14" onkeypress="return mascaraCelular(event)" placeholder="(00)00000-0000"/>
                             </div>
                         </div>
 
@@ -100,15 +100,15 @@
                             <div class="form-group">
                                 <label for="cep">CEP:</label>
                                 <input type="text" name="cep" id="cep" class="form-control cep-mask" onchange="onChangeBuscaCep(this)" placeholder="00000-000" 
-                                maxlength="10" onkeyup="return mascaraCep(event)" onkeypress="return somenteNumeros(event)"required />
+                                maxlength="10" onkeypress="return mascaraCep(event)"required />
                             </div>
                             <div class="form-group">
                                 <label for="bairro">Bairro:</label>
-                                <input type="text" id="bairro" name="bairro" required />
+                                <input type="text" id="bairro" name="bairro" readonly required />
                             </div>
                             <div class="form-group rua">
                                 <label for="rua">Rua:</label>
-                                <input type="text" id="rua" name="rua" required />
+                                <input type="text" id="rua" name="rua" readonly required />
                             </div>
                         </div>
 

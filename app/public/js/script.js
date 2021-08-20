@@ -64,7 +64,7 @@ function mascaraTelefone(evt) {
     var tam = tel.value.length;
 
     var tecla = evt.keyCode;
-    if (tecla != 8) {
+    if (tecla != 8 && tecla >= 46 && tecla <= 57) {
         switch (tam) {
             case 1:
                 tel.value = "(" + tel.value;
@@ -76,6 +76,8 @@ function mascaraTelefone(evt) {
                 tel.value = tel.value + "-";
                 break;
         }
+    } else {
+        return false;
     }
 }
 
@@ -85,7 +87,7 @@ function mascaraCelular(evt) {
     var tam = tel.value.length;
 
     var tecla = evt.keyCode;
-    if (tecla != 8) {
+    if (tecla != 8 && tecla >= 46 && tecla <= 57) {
         switch (tam) {
             case 1:
                 tel.value = "(" + tel.value;
@@ -97,6 +99,8 @@ function mascaraCelular(evt) {
                 tel.value = tel.value + "-";
                 break;
         }
+    } else {
+        return false;
     }
 }
 
@@ -106,7 +110,7 @@ function mascaraCep(evt) {
     var tam = cep.value.length;
 
     var tecla = evt.keyCode;
-    if (tecla != 8) {
+    if (tecla != 8 && tecla >= 46 && tecla <= 57) {
         switch (tam) {
             case 2:
                 cep.value = cep.value + ".";
@@ -115,6 +119,8 @@ function mascaraCep(evt) {
                 cep.value = cep.value + "-";
                 break;
         }
+    } else {
+        return false;
     }
 }
 
@@ -124,7 +130,7 @@ function mascaraCnpj(evt) {
     var tam = cnpj.value.length;
 
     var tecla = evt.keyCode;
-    if (tecla != 8) {
+    if (tecla != 8 && tecla >= 46 && tecla <= 57) {
         switch (tam) {
             case 2:
                 cnpj.value = cnpj.value + ".";
@@ -139,13 +145,6 @@ function mascaraCnpj(evt) {
                 cnpj.value = cnpj.value + "-";
                 break;
         }
-    }
-}
-
-function somenteNumeros(evt) {
-    var tecla = evt.keyCode;
-    if (tecla >= 46 && tecla <= 57) {
-        return true;
     } else {
         return false;
     }

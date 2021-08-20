@@ -99,7 +99,6 @@ const postFormularioSchema = Joi.object({
       return helpers.error("any.invalid");
       // return helpers.error("A logo precisa ser um link de imagem com extensão png, jpeg ou jpg!");
     }
-
   }).messages({
     'any.invalid': "A logo precisa ser um link de imagem com extensão png, jpeg ou jpg!",
     'any.required': "O campo 'Logo' precisa ser preenchido!"
