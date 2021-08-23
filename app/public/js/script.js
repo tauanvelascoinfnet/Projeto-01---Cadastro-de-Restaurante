@@ -67,7 +67,7 @@ function mascaraTelefone(evt) {
     if (tecla != 8 && tecla >= 48 && tecla <= 57) {
         switch (tam) {
             case 1:
-                tel.value = "(" + tel.value;
+                tel.value = tel.value.indexOf("(") == -1 ? "(" + tel.value : tel.value;
                 break;
             case 3:
                 tel.value = tel.value + ")";
@@ -90,7 +90,7 @@ function mascaraCelular(evt) {
     if (tecla != 8 && tecla >= 48 && tecla <= 57) {
         switch (tam) {
             case 1:
-                tel.value = "(" + tel.value;
+                tel.value = tel.value.indexOf("(") == -1 ? "(" + tel.value : tel.value;
                 break;
             case 3:
                 tel.value = tel.value + ")";
