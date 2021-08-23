@@ -15,10 +15,13 @@ servidor.use(express.static(path.join(__dirname, "public"))); // apontar pasta p
 servidor.set('views', path.join(__dirname, "views")) // informar o express onde está a pasta view
 servidor.set("view engine", "ejs"); // escolher o template enginner para rodar o "html" do projeto
 
-const porta = 5001;
-servidor.listen(porta, () => {
-  console.log("O SERVIDOR ESTA FUINCIONANDO NA PORTA ", porta);
-});
+// const porta = 5001;
+// servidor.listen(porta, () => {
+//   console.log("O SERVIDOR ESTA FUINCIONANDO NA PORTA ", porta);
+// });
+servidor.listen(process.env.PORT || 5000, () => {
+})
+
 
 // const express = require("express");
 // const servidor = express();
